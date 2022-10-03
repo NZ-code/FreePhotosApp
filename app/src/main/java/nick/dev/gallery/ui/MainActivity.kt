@@ -29,7 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         imageAdapter = ImageAdapter()
 
-        viewModel.getPhotosByWord()
+        binding.btnEnter.setOnClickListener {
+            val word = binding.etWord.text.toString()
+            viewModel.getPhotosByWord(word)
+        }
+
         viewModel.photos.observe(this){
             imageAdapter.differ.submitList(it)
         }

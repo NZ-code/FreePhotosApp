@@ -10,9 +10,9 @@ import nick.dev.gallery.repository.GalleryRepository
 
 class GalleryViewModel(private val respository:GalleryRepository):ViewModel(){
     val photos = MutableLiveData<List<Photo>>()
-    fun getPhotosByWord(){
+    fun getPhotosByWord(word:String){
         viewModelScope.launch {
-            val response = respository.getPhotosByName()
+            val response = respository.getPhotosByName(word)
             photos.postValue( response.body()?.photos)
 
         }
